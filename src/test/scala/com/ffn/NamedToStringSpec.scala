@@ -109,7 +109,7 @@ class NamedToStringSpec extends munit.FunSuite {
     override def toString: String = NamedToString.forThisClass
   }
 
-  case class FooHidden(bar: Int, @hidden() baz: String) {
+  case class FooHidden(bar: Int, @hidden baz: String) {
     override def toString: String = NamedToString.forThisClass
   }
 

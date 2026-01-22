@@ -13,6 +13,11 @@ class withNamedToStringSpec extends munit.FunSuite {
     assertEquals(foo.toString, "FooHidden(bar=3)")
   }
 
+  test("generate toString for case class with hidden fields even when @hidden is used with ()") {
+    val foo = FooHiddenPs(3, "abc")
+    assertEquals(foo.toString, "FooHiddenPs(bar=3)")
+  }
+
   test("generate toString for case class with multiple fields") {
     val person = Person("Alice", 30, "alice@example.com")
     assertEquals(person.toString, "Person(name=Alice, age=30, email=alice@example.com)")
@@ -223,6 +228,9 @@ class withNamedToStringSpec extends munit.FunSuite {
 
   @withNamedToString
   case class FooHidden(bar: Int, @hidden baz: String)
+
+  @withNamedToString
+  case class FooHiddenPs(bar: Int, @hidden() baz: String)
 
   @withNamedToString
   case class Person(name: String, age: Int, email: String)
